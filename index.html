@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Random Password Generator - Samarth Nagpure</title>
   <style>
+    /* Reset default spacing */
     * {
       margin: 0;
       padding: 0;
-      user-select: none;
       box-sizing: border-box;
     }
 
+    /* Background with gradient */
     body {
-      background-color: #001aff;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
     }
 
+    /* Center white card */
     .box {
       background-color: white;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
-    }
-
-    .box h2, .box h3, .box h4 {
-      margin-bottom: 10px;
-      font-size: 26px;
-      color: #015a96;
-    }
-
-    input {
-      padding: 20px;
-      height: 50px;
-      width: 100%;
+      width: 90%;
       max-width: 400px;
+    }
+
+    /* Title and name */
+    .box h2, .box h3, .box h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Input box */
+    input {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      border: 2px solid #667eea;
       border-radius: 6px;
-      border: 2px solid rgba(43, 135, 255, 0.822);
-      outline: none;
-      font-size: 22px;
       margin-top: 20px;
+      outline: none;
     }
 
     input::placeholder {
-      font-size: 23px;
+      color: #aaa;
+    }
+
+    /* Buttons */
+    .btn-group {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
     }
 
     .button {
-      font-size: 15px;
-      margin-top: 30px;
-      margin-right: 10px;
-      padding: 12px 25px;
-      background-color: #000000;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #667eea;
       color: white;
-      border: 2px solid rgb(175, 245, 245);
-      border-radius: 7px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
     .button:hover {
-      background-color: #222222;
-    }
-
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      background-color: #5a67d8;
     }
   </style>
 </head>
-
 <body>
   <div class="box">
     <h2>Random Password Generator</h2>
     <h3>By</h3>
     <h4>Samarth Nagpure</h4>
 
-    <input type="text" id="password" placeholder="Create password" readonly>
+    <!-- Password output box -->
+    <input type="text" id="password" placeholder="Create password" readonly />
 
+    <!-- Buttons for actions -->
     <div class="btn-group">
       <button class="button" onclick="genPassword()">Generate</button>
       <button class="button" onclick="copyPassword()">Copy</button>
@@ -91,6 +95,7 @@
   </div>
 
   <script>
+    // Function to generate password
     function genPassword() {
       const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       const passwordLength = 12;
@@ -104,10 +109,11 @@
       document.getElementById("password").value = password;
     }
 
+    // Function to copy password
     function copyPassword() {
-      const copyText = document.getElementById("password").value;
-      if (copyText) {
-        navigator.clipboard.writeText(copyText).then(() => {
+      const passwordBox = document.getElementById("password");
+      if (passwordBox.value !== "") {
+        navigator.clipboard.writeText(passwordBox.value).then(() => {
           alert("Password copied to clipboard!");
         });
       }
